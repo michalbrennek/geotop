@@ -1,0 +1,13 @@
+#ifndef geotop_config_h_meson
+#define geotop_config_h_meson
+
+#mesondefine COMPILER_HAS_DIAGNOSTIC_PRAGMA
+// macros DISABLE_WARNINGS and ENABLE_WARNINGS
+#include "warnings.h"
+
+#mesondefine MUTE_GEOLOG
+#mesondefine MUTE_GEOTIMER
+#mesondefine MATH_OPTIM
+#mesondefine WITH_OMP
+#mesondefine WITH_METEOIO
+#endif
