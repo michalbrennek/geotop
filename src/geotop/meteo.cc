@@ -96,7 +96,6 @@ void meteo_distr(long *line, long lineLR, METEO *met, WATER *wat, TOPO *top,
 
   if (par->en_balance==0)
     {
-      #pragma omp parallel for private(r, c)
       for (r=1; r<=Nr; r++)
         {
           for (c=1; c<=Nc; c++)

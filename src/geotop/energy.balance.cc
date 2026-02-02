@@ -26,6 +26,9 @@
 #include "constants.h"
 #include "struct.geotop.h"
 #include "energy.balance.h"
+#ifdef _OPENMP
+#include <omp.h>
+#endif
 #include "meteo.h"
 #include "snow.h"
 #include "pedo.funct.h"

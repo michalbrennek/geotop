@@ -127,7 +127,6 @@ short get_temperature(double dE, double dN, Matrix<double> *E, Matrix<double> *N
     if (ok == 0) return ok;
 
     //Convert these grid values back to the actual gridded elevations [C].
-    #pragma omp parallel for private(r, c)
     for (r = 1; r <= topo->nrh; r++) {
         for (c = 1; c <= topo->nch; c++) {
             if ((long) (*topo)(r,c) != number_novalue) {
@@ -187,7 +186,6 @@ short get_relative_humidity(double dE, double dN, Matrix<double> *E, Matrix<doub
     if (ok == 0) return 0;
 
     //Convert these grid values back to the actual gridded elevations, and convert to RH
-    #pragma omp parallel for private(r, c)
     for (r = 1; r <= topo->nrh; r++) {
         for (c = 1; c <= topo->nch; c++) {
             if ((long) (*topo)(r,c) != number_novalue) {
@@ -234,7 +232,6 @@ void topo_mod_winds(Matrix<double> *winddir_grid, Matrix<double> *windspd_grid,
     //Compute the slope in the direction of the wind.
     wind_slope.reset(new Matrix<double>{topo->nrh, topo->nch});
 
-    #pragma omp parallel for private(r, c)
     for (r = 1; r <= nr; r++) {
         for (c = 1; c <= nc; c++) {
             if ((*topo)(r,c) != undef) {
@@ -248,7 +245,6 @@ void topo_mod_winds(Matrix<double> *winddir_grid, Matrix<double> *windspd_grid,
     //curvature
     wind_curv.reset(new Matrix<double>{topo->nrh, topo->nch});
 
-    #pragma omp parallel for private(r, c)
     for (r = 1; r <= nr; r++) {
         for (c = 1; c <= nc; c++) {
             if ((*topo)(r,c) != undef) {
@@ -277,7 +273,6 @@ void topo_mod_winds(Matrix<double> *winddir_grid, Matrix<double> *windspd_grid,
     //Calculate the wind speed and direction adjustments.
     //The weights should be chosen so that they limit the total wind weight to between 0.5 and 1.5 (but this is not required).
 
-    #pragma omp parallel for private(r, c, windwt, dirdiff)
     for (r = 1; r <= nr; r++) {
         for (c = 1; c <= nc; c++) {
             if ((*topo)(r,c) != undef) {
