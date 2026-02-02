@@ -40,7 +40,8 @@ output-tabs/
 output-maps/*
 output-maps/
 *.old
-input*
+# input directories (not source files)
+input/
 failing_output
 *.log
 rec/*
